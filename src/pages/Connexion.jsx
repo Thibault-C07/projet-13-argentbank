@@ -1,13 +1,13 @@
-import Header from '../components/Header'
+import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
-import Form from '../components/Form'
+import SignInForm from '../components/SignInForm'
 
 const Connexion = () => {
   return (
     <div className="connexion">
-      <Header />
+      <Navigation />
       <main>
-        <Form />
+        <SignInForm />
       </main>
       <Footer />
     </div>

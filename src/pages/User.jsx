@@ -1,38 +1,47 @@
-import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Navigation from '../components/Navigation'
 import Account from '../components/Account'
-import Connexion from './Connexion'
+import UserHeader from '../components/Header'
 import { useSelector } from 'react-redux'
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import '../styles/User.css'
 
-const User = () => {
-  const connected = useSelector((state) => state.connected)
-  return connected ? (
-    <div className="user">
-      <Header />
-      <main>
+export default function User() {
+  document.title = "Argent Bank - User's Page"
+  let navigate = useNavigate()
+
+  const { token } = useSelector((state) => state.userLogin)
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/')
+    }
+  }, [token, navigate])
+
+  return (
+    <>
+      <Navigation />
+      <main className="main bg-dark bg-padding">
+        <UserHeader />
+        <h2 className="sr-only">Accounts</h2>
         <Account
-          titre="Argent Bank Checking (x8349)"
-          montant="$2,082.79"
+          title="Argent Bank Checking (x8349)"
+          amount="$2,082.79"
           description="Available Balance"
         />
         <Account
-          titre="Argent Bank Savings (x6712)"
-          montant="$10,928.42"
+          title="Argent Bank Savings (x6712)"
+          amount="$10,928.42"
           description="Available Balance"
         />
         <Account
-          titre="Argent Bank Credit Card (x8349)"
-          montant="$184.30"
+          title="Argent Bank Credit Card (x8349)"
+          amount="$184.30"
           description="Current Balance"
         />
       </main>
       <Footer />
-    </div>
-  ) : (
-    <Routes>
-      <Route path="/*" element={<Connexion />} />
-    </Routes>
+    </>
   )
 }
-export default User

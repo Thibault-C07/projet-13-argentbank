@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import '../styles/Account.css'
 
-const Account = ({ titre, montant, description }) => {
+const Account = ({ title, amount, description }) => {
   return (
     <section className="account">
       <div>
-        <h3> {titre} </h3>
-        <p className="account-montant"> {montant} </p>
+        <h3> {title} </h3>
+        <p className="account-montant"> {amount} </p>
         <p className="acount-description"> {description} </p>
       </div>
       <div className="cta">
@@ -17,8 +17,8 @@ const Account = ({ titre, montant, description }) => {
 }
 
 Account.propTypes = {
-  titre: PropTypes.string.isRequired,
-  montant: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 }
 
