@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import '../styles/User.css'
 
-export default function User() {
+const User = () => {
   document.title = "Argent Bank - User's Page"
   let navigate = useNavigate()
 
@@ -45,3 +45,5 @@ export default function User() {
     </>
   )
 }
+
+export default User
