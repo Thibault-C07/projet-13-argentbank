@@ -9,7 +9,7 @@ const Navigation = () => {
   let navigate = useNavigate()
   const dispatch = useDispatch()
   const { token } = useSelector((state) => state.userLogin)
-  const { firstName } = useSelector((state) => state.userProfile)
+  const { firstName, lastName } = useSelector((state) => state.userProfile)
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -38,7 +38,7 @@ const Navigation = () => {
         {token ? (
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            {firstName}
+            {firstName} {lastName}
           </Link>
         ) : (
           ''

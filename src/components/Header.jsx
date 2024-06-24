@@ -9,23 +9,24 @@ const Header = () => {
   const { firstName } = useSelector((state) => state.userProfile)
   const { lastName } = useSelector((state) => state.userProfile)
   const { token } = useSelector((state) => state.userLogin)
-  const { success } = useSelector((state) => state.userLogin)
 
   const [newFirstname, setNewFirstname] = useState()
   const [newLastname, setNewLastname] = useState()
 
-  const [editButton, setEditButton] = useState('')
+  const [editButton, setEditButton] = useState(false)
 
   const editNameButton = (e) => {
     e.preventDefault()
     setEditButton((current) => !current)
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
-    dispatch(updateProfile(token, newFirstname, newLastname))
-    if (success) {
-      setEditButton((current) => !current)
+    try {
+      await dispatch(updateProfile(token, newFirstname, newLastname))
+      setEditButton(false)
+    } catch (error) {
+      console.error('Error updating profile:', error)
     }
   }
 
